@@ -16,7 +16,7 @@
   </distributionManagement> 
 
   <properties>
-
+    <spring-boot.version>1.2.3.RELEASE</spring-boot.version>
     <jackson.version>2.4.5</jackson.version>
 
     <start-class>com.wonders.xlab.framework.Application</start-class>
@@ -36,7 +36,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>1.2.2.RELEASE</version>
+        <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -66,7 +66,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>1.2.2.RELEASE</version>
+        <version>${spring-boot.version}</version>
         <executions>
           <execution>
             <goals>
