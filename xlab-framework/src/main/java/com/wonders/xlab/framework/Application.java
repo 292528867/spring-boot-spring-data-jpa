@@ -8,6 +8,8 @@ import com.wonders.xlab.framework.repository.MyRepositoryFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,7 +26,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         repositoryFactoryBeanClass = MyRepositoryFactoryBean.class)
 @EntityScan("${app.basePackages}")
 @ComponentScan("${app.basePackages}")
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
     @Value("${jackson.indent.output}")
     public boolean jacksonIndentOutput = false;
@@ -42,6 +44,11 @@ public class Application {
                 .registerModule(new JodaModule())
                 .registerModule(new Hibernate4Module());
 
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(Application.class);
     }
 
     public static void main(String[] args) {
