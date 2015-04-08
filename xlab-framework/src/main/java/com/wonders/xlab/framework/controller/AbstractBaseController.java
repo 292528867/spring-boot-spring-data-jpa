@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +30,12 @@ public abstract class AbstractBaseController<T, ID extends Serializable> {
 
     @Autowired
     protected ObjectMapper objectMapper;
+
+
+    @RequestMapping(value = "query", method = RequestMethod.GET)
+    public List<T> findAll(String filters) {
+        return findAll(filters, null).getContent();
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public Page<T> findAll(String filters, Pageable pageable) {
