@@ -37,6 +37,11 @@ public class MyRepositoryImpl<T, ID extends Serializable>
     }
 
     @Override
+    public List<T> findAll(Map<String, ?> filters) {
+        return getQuery(filters, (Pageable) null).getResultList();
+    }
+
+    @Override
     public Page<T> findAll(Map<String, ?> filters, Pageable pageable) {
 
         TypedQuery<T> query = getQuery(filters, pageable);
