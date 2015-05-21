@@ -55,9 +55,12 @@ public class Application extends SpringBootServletInitializer {
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         }
 
+        Hibernate4Module hibernateMoudle = new Hibernate4Module();
+        hibernateMoudle.disable(Hibernate4Module.Feature.USE_TRANSIENT_ANNOTATION);
+
         return objectMapper
                 .registerModule(new JodaModule())
-                .registerModule(new Hibernate4Module());
+                .registerModule(hibernateMoudle);
 
     }
 
