@@ -20,6 +20,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.servlet.Filter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by wangqiang on 15/3/28.
@@ -38,9 +40,16 @@ public class Application extends SpringBootServletInitializer {
     @Bean
     public FilterRegistrationBean corsFilter() {
 
+        Map<String, String> initParameters = new HashMap<>();
+        initParameters.put("cors.allowOrigin", "*");
+        initParameters.put("cors.supportedMethods", "GET, POST, HEAD, PUT, DELETE");
+        initParameters.put("cors.supportedHeaders", "Accept, Origin, X-Requested-With, Content-Type, Last-Modified");
+
+
         Filter filter = new CORSFilter();
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         filterRegistrationBean.setFilter(filter);
+        filterRegistrationBean.setInitParameters(initParameters);
         filterRegistrationBean.addUrlPatterns("/*");
 
         return filterRegistrationBean;
