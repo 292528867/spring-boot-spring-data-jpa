@@ -54,6 +54,7 @@ public abstract class AbstractBaseController<T, ID extends Serializable> {
                 throw new RuntimeException(e);
             }
         }
+        pageable = pageable.previousOrFirst();
         return getRepository().findAll(filterMap, pageable);
     }
 
