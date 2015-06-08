@@ -15,8 +15,10 @@ import java.util.Map;
 @NoRepositoryBean
 public interface MyRepository<T, ID extends Serializable> extends JpaRepository<T, ID> {
 
-    List<T> findAll(Map<String, ?> filterMap);
+    T find(Map<String, ?> filters);
 
-    Page<T> findAll(Map<String, ?> filterMap, Pageable pageable);
+    List<T> findAll(Map<String, ?> filters);
+
+    Page<T> findAll(Map<String, ?> filters, Pageable pageable);
 
 }
