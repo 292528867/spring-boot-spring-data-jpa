@@ -105,9 +105,14 @@ public class MyRepositoryImpl<T, ID extends Serializable>
                 path = path.get(names[i]);
             }
 
+            Object value = entry.getValue();
+            if (StringUtils.contains(op, "like")) {
+                value = "%" + value + "%";
+            }
+
             try {
                 Predicate predicate = (Predicate) MethodUtils.invokeMethod(
-                        cb, op, path, entry.getValue());
+                        cb, op, path, value);
                 predicates.add(predicate);
             } catch (Exception e) {
                 e.printStackTrace();
