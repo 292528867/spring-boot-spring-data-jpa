@@ -31,6 +31,11 @@ public abstract class AbstractBaseController<T, ID extends Serializable> {
     @Autowired
     protected ObjectMapper objectMapper;
 
+    @RequestMapping(value = "findAll", method = RequestMethod.GET)
+    public List<T> findAll() {
+        return getRepository().findAll();
+    }
+
     @RequestMapping(value = "query", method = RequestMethod.GET)
     public List<T> findAll(String filters) {
         Map<String, ?> filterMap = null;

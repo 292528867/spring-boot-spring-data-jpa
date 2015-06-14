@@ -13,10 +13,10 @@
       <name>X-LAB Nexus Repositories</name>
       <url>http://101.231.124.8:45675/nexus/content/repositories/snapshots/</url>
     </repository>
-  </distributionManagement> 
+  </distributionManagement>
 
   <properties>
-    <spring-boot.version>1.2.3.RELEASE</spring-boot.version>
+    <spring-boot.version>1.2.4.RELEASE</spring-boot.version>
     <jackson.version>2.4.5</jackson.version>
 
     <start-class>com.wonders.xlab.framework.Application</start-class>
