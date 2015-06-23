@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.query.QueryUtils;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.io.Serializable;
@@ -38,12 +39,21 @@ public class MyRepositoryImpl<T, ID extends Serializable>
 
     @Override
     public T find(Map<String, ?> filters) {
-        return getQuery(filters, (Pageable) null).getSingleResult();
+        try {
+            return getQuery(filters, (Pageable) null).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public List<T> findAll(Map<String, ?> filters) {
         return getQuery(filters, (Pageable) null).getResultList();
+    }
+
+    @Override
+    public List<T> findAll(Map<String, ?> filters, Sort sort) {
+        return getQuery(filters, sort).getResultList();
     }
 
     @Override
