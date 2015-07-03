@@ -1,7 +1,10 @@
 package com.wonders.xlab.framework;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.thetransactioncompany.cors.CORSFilter;
@@ -20,6 +23,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.servlet.Filter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +67,13 @@ public class Application extends SpringBootServletInitializer {
         if (jacksonIndentOutput) {
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         }
+
+        objectMapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
+            @Override
+            public void serialize(Object value, JsonGenerator jgen, SerializerProvider provider) throws IOException {
+                jgen.writeString("");
+            }
+        });
 
         Hibernate4Module hibernateMoudle = new Hibernate4Module();
         hibernateMoudle.disable(Hibernate4Module.Feature.USE_TRANSIENT_ANNOTATION);
