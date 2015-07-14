@@ -86,7 +86,8 @@ public class Application extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(Application.class);
+        return builder.profiles("production")
+                .sources(Application.class);
     }
 
     public static void main(String[] args) {
