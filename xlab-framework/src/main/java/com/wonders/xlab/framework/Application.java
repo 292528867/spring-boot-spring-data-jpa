@@ -21,6 +21,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.servlet.Filter;
 import java.io.IOException;
@@ -34,6 +35,7 @@ import java.util.Map;
 @EnableJpaAuditing
 @EnableJpaRepositories(basePackages = "${app.basePackages}",
         repositoryFactoryBeanClass = MyRepositoryFactoryBean.class)
+@EnableScheduling
 @EntityScan("${app.basePackages}")
 @ComponentScan("${app.basePackages}")
 public class Application extends SpringBootServletInitializer {
