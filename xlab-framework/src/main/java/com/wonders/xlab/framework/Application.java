@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.Filter;
 import java.io.IOException;
@@ -84,6 +85,11 @@ public class Application extends SpringBootServletInitializer {
                 .registerModule(new JodaModule())
                 .registerModule(hibernateMoudle);
 
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     @Override
