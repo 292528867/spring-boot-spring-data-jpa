@@ -68,6 +68,14 @@
         <version>2.4.6</version>
       </dependency>
 
+      <!-- 七牛云存储 -->
+      <dependency>
+        <groupId>com.qiniu</groupId>
+        <artifactId>qiniu-java-sdk</artifactId>
+        <version>[7.0.0, 7.0.99]</version>
+      </dependency>
+
+      <!-- test begin -->
       <dependency>
         <groupId>org.dbunit</groupId>
         <artifactId>dbunit</artifactId>
@@ -87,6 +95,7 @@
         <version>1.2.1</version>
         <scope>test</scope>
       </dependency>
+      <!-- test end -->
 
     </dependencies>
 
