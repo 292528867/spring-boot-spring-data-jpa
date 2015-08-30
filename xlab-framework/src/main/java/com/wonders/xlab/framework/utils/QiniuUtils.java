@@ -33,7 +33,9 @@ public final class QiniuUtils {
             ACCESS_KEY = props.getProperty("qiniu.access_key");
             SECRET_KEY = props.getProperty("qiniu.secret_key");
             AUTH = Auth.create(ACCESS_KEY, SECRET_KEY);
+            stream.close();
         } catch (IOException e) {
+            LOGGER.error(e.getMessage());
             throw new RuntimeException(e);
         }
     }
