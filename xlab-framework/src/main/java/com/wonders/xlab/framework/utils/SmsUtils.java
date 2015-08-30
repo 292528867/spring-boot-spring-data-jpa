@@ -35,6 +35,10 @@ public final class SmsUtils {
         }
     }
 
+    private SmsUtils() {
+
+    }
+
     public static boolean sendMsg(String[] mobiles, String content) {
         return sendMsg(StringUtils.join(mobiles, ','), content);
     }

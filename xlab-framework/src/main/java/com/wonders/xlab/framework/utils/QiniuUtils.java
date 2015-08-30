@@ -40,6 +40,10 @@ public final class QiniuUtils {
         }
     }
 
+    private QiniuUtils() {
+
+    }
+
     public static boolean upload(File file, String bucket, String key) {
         try {
             Response res = uploadManager.put(file, key, AUTH.uploadToken(bucket, key));
