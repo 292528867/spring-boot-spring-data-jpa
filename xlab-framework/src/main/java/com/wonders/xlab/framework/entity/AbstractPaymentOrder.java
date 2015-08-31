@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.Set;
 
 /**
+ * 支付订单
+ * <p>
  * Created by wangqiang on 15/8/31.
  */
 @MappedSuperclass
@@ -45,6 +47,9 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
     @JoinColumn(name = "USER_ID")
     private U user;
 
+    /**
+     * 订单关联的产品
+     */
     @OneToMany
     @JoinTable(name = "order_production",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -52,9 +57,15 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
     )
     private Set<P> productions;
 
+    /**
+     * 订单金额
+     */
     @Column(nullable = false)
     private BigDecimal amount;
 
+    /**
+     * 订单支付渠道
+     */
     @Column(nullable = false)
     private String paymentChannel;
 
