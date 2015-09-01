@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -49,12 +50,14 @@ public final class PingxxUtils {
 
     public static Charge payOrder(AbstractPaymentOrder order) {
 
+        if (order == null) {
+            throw new IllegalArgumentException("支付订单参数不能为空!");
+        }
+
         Map<String, Object> chargeParams = new HashMap<>();
         chargeParams.put("order_no", order.getOrderNo());
-        chargeParams.put("amount", order.getAmount());
-        Map<String, String> app = new HashMap<>();
-        app.put("id", PINGXX_APP_ID);
-        chargeParams.put("app", app);
+        chargeParams.put("amount", order.getAmount().doubleValue() * 100); // 人民币以分为单位
+        chargeParams.put("app", Collections.singletonMap("id", PINGXX_APP_ID));
         chargeParams.put("channel", order.getPaymentChannel());
         chargeParams.put("currency", "cny"); // 人民币
         chargeParams.put("client_ip", order.getClientIp());
