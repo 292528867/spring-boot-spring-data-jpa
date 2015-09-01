@@ -166,7 +166,7 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
     }
 
     public enum PaymentChannel {
-        alipay, alipay_wap, wx, wx_pub
+        alipay, alipay_wap, alipay_qr, wx, wx_pub, wx_pub_qr
     }
 
     public enum PaymentStatus {
