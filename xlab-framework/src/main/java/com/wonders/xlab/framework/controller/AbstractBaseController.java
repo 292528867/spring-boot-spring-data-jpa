@@ -41,7 +41,7 @@ public abstract class AbstractBaseController<T, ID extends Serializable> {
         Map<String, ?> filterMap = null;
         if (StringUtils.isNotEmpty(filters)) {
             try {
-                filterMap = objectMapper.readValue(filters, HashMap.class);
+                filterMap = objectMapper.readValue(filters, Map.class);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -54,7 +54,7 @@ public abstract class AbstractBaseController<T, ID extends Serializable> {
         Map<String, ?> filterMap = null;
         if (StringUtils.isNotEmpty(filters)) {
             try {
-                filterMap = objectMapper.readValue(filters, HashMap.class);
+                filterMap = objectMapper.readValue(filters, Map.class);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
