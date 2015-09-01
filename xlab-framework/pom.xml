@@ -43,6 +43,11 @@
       <artifactId>jackson-datatype-hibernate4</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+    </dependency>
+
     <!-- jpa2.1 api -->
     <dependency>
       <groupId>org.eclipse.persistence</groupId>

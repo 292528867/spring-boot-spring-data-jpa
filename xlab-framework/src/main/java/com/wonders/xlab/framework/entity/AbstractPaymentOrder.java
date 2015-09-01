@@ -4,6 +4,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
@@ -19,30 +21,36 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
     /**
      * 订单号
      */
+    @NotNull
+    @Size(min = 16, max = 16)
     @Column(nullable = false, unique = true)
     private String orderNo;
 
     /**
      * 订单标题
      */
+    @NotNull
     @Column(nullable = false)
     private String subject;
 
     /**
      * 订单内容
      */
+    @NotNull
     @Column(nullable = false)
     private String body;
 
     /**
      * 下单设备的ip地址
      */
+    @NotNull
     @Column(nullable = false)
     private String clientIp;
 
     /**
      * 下单用户
      */
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID")
     private U user;
@@ -60,14 +68,23 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
     /**
      * 订单金额
      */
+    @NotNull
     @Column(nullable = false)
     private BigDecimal amount;
 
     /**
      * 订单支付渠道
      */
+    @NotNull
     @Column(nullable = false)
     private String paymentChannel;
+
+    /**
+     * 订单支付状态
+     */
+    @NotNull
+    @Column(nullable = false)
+    private String paymentStatus;
 
     public AbstractPaymentOrder() {
         this.orderNo = DateFormatUtils.format(new Date(), "yyyyMMddHHmmss")
@@ -136,6 +153,14 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
 
     public void setPaymentChannel(String paymentChannel) {
         this.paymentChannel = paymentChannel;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
 }
