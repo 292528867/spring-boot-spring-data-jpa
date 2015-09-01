@@ -90,7 +90,7 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
 
     public AbstractPaymentOrder() {
         this.orderNo = DateFormatUtils.format(new Date(), "yyyyMMddHHmmss")
-                + RandomStringUtils.random(2);
+                + RandomStringUtils.randomNumeric(2);
     }
 
     public String getOrderNo() {
