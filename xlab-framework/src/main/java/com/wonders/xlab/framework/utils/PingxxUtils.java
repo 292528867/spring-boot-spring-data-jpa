@@ -48,7 +48,7 @@ public final class PingxxUtils {
 
     }
 
-    public static Charge payOrder(AbstractPaymentOrder order) {
+    public static Charge createCharge(AbstractPaymentOrder order) {
 
         if (order == null) {
             throw new IllegalArgumentException("支付订单参数不能为空!");
