@@ -77,14 +77,16 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
      */
     @NotNull
     @Column(nullable = false)
-    private String paymentChannel;
+    @Enumerated(EnumType.STRING)
+    private PaymentChannel paymentChannel = PaymentChannel.wx;
 
     /**
      * 订单支付状态
      */
     @NotNull
     @Column(nullable = false)
-    private String paymentStatus;
+    @Enumerated
+    private PaymentStatus paymentStatus = PaymentStatus.NON_PAYMENT;
 
     public AbstractPaymentOrder() {
         this.orderNo = DateFormatUtils.format(new Date(), "yyyyMMddHHmmss")
@@ -147,20 +149,55 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
         this.amount = amount;
     }
 
-    public String getPaymentChannel() {
+    public PaymentChannel getPaymentChannel() {
         return paymentChannel;
     }
 
-    public void setPaymentChannel(String paymentChannel) {
+    public void setPaymentChannel(PaymentChannel paymentChannel) {
         this.paymentChannel = paymentChannel;
     }
 
-    public String getPaymentStatus() {
+    public PaymentStatus getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
+
+    public enum PaymentChannel {
+        alipay, alipay_wap, wx, wx_pub
+    }
+
+    public enum PaymentStatus {
+
+        /**
+         * 待支付
+         */
+        NON_PAYMENT,
+
+        /**
+         * 取消支付
+         */
+        PAYMENT_CANCELLED,
+
+        /**
+         * 支付超时
+         */
+        PAYMENT_TIMEOUT,
+
+        /**
+         * 支付成功
+         */
+        PAYMENT_SUCCEEDED,
+
+
+        /**
+         * 支付失败
+         */
+        PAYMENT_FAILED
+
+    }
+
 
 }
