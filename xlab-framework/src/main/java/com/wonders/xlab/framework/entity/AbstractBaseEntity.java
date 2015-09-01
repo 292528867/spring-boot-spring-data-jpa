@@ -1,6 +1,8 @@
 package com.wonders.xlab.framework.entity;
 
 import org.joda.time.DateTime;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -15,16 +17,14 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractBaseEntity<PK extends Serializable> extends AbstractPersistable<PK> {
 
+    @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(updatable = false)
     private Date createdDate;
 
+    @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
-
-    private String ext1;
-
-    private String ext2;
 
     public DateTime getCreatedDate() {
         return null == createdDate ? null : new DateTime(createdDate);
@@ -40,22 +40,6 @@ public abstract class AbstractBaseEntity<PK extends Serializable> extends Abstra
 
     public void setLastModifiedDate(final DateTime lastModifiedDate) {
         this.lastModifiedDate = null == lastModifiedDate ? null : lastModifiedDate.toDate();
-    }
-
-    public String getExt1() {
-        return ext1;
-    }
-
-    public void setExt1(String ext1) {
-        this.ext1 = ext1;
-    }
-
-    public String getExt2() {
-        return ext2;
-    }
-
-    public void setExt2(String ext2) {
-        this.ext2 = ext2;
     }
 
 }
