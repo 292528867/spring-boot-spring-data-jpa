@@ -56,7 +56,7 @@ public final class PingxxUtils {
 
         Map<String, Object> chargeParams = new HashMap<>();
         chargeParams.put("order_no", order.getOrderNo());
-        chargeParams.put("amount", order.getAmount().doubleValue() * 100); // 人民币以分为单位
+        chargeParams.put("amount", (int) (order.getAmount().doubleValue() * 100)); // 人民币以分为单位
         chargeParams.put("app", Collections.singletonMap("id", PINGXX_APP_ID));
         chargeParams.put("channel", order.getPaymentChannel());
         chargeParams.put("currency", "cny"); // 人民币
