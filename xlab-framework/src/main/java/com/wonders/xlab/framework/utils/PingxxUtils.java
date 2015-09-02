@@ -23,7 +23,6 @@ public final class PingxxUtils {
 
     private static final String PINGXX_LIVE_KEY;
     private static final String PINGXX_TEST_KEY;
-    private static final String PINGXX_APP_ID;
 
     static {
         Properties props = new Properties();
@@ -32,7 +31,6 @@ public final class PingxxUtils {
             props.load(stream);
             PINGXX_LIVE_KEY = props.getProperty("pingxx.live.key");
             PINGXX_TEST_KEY = props.getProperty("pingxx.test.key");
-            PINGXX_APP_ID = props.getProperty("pingxx.app.id");
 
             // 设置Ping++ API-Key 分正试环境和测试环境
             Pingpp.apiKey = PINGXX_LIVE_KEY;
@@ -48,7 +46,13 @@ public final class PingxxUtils {
 
     }
 
-    public static Charge createCharge(AbstractPaymentOrder order) {
+    /**
+     *
+     * @param pingxxAppId ping++ 应用ID
+     * @param order 抽象的支付定单
+     * @return ping++ Charge 对象
+     */
+    public static Charge createCharge(String pingxxAppId, AbstractPaymentOrder order) {
 
         if (order == null) {
             throw new IllegalArgumentException("支付订单参数不能为空!");
@@ -57,7 +61,7 @@ public final class PingxxUtils {
         Map<String, Object> chargeParams = new HashMap<>();
         chargeParams.put("order_no", order.getOrderNo());
         chargeParams.put("amount", (int) (order.getAmount().doubleValue() * 100)); // 人民币以分为单位
-        chargeParams.put("app", Collections.singletonMap("id", PINGXX_APP_ID));
+        chargeParams.put("app", Collections.singletonMap("id", pingxxAppId));
         chargeParams.put("channel", order.getPaymentChannel());
         chargeParams.put("currency", "cny"); // 人民币
         chargeParams.put("client_ip", order.getClientIp());

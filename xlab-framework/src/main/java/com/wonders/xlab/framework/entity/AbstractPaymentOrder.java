@@ -69,7 +69,7 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
      * 订单金额
      */
     @NotNull
-    @Column(nullable = false)
+    @Column(nullable = false, scale = 2)
     private BigDecimal amount;
 
     /**
@@ -190,7 +190,6 @@ public abstract class AbstractPaymentOrder<U, P> extends AbstractBaseEntity<Long
          * 支付成功
          */
         PAYMENT_SUCCEEDED,
-
 
         /**
          * 支付失败
