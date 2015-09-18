@@ -26,7 +26,7 @@
   </repositories>
 
   <properties>
-    <spring-boot.version>1.2.5.RELEASE</spring-boot.version>
+    <spring-boot.version>1.2.6.RELEASE</spring-boot.version>
 
     <start-class>com.wonders.xlab.framework.Application</start-class>
 
