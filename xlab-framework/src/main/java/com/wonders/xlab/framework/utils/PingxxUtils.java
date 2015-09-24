@@ -27,6 +27,9 @@ public final class PingxxUtils {
     static {
         Properties props = new Properties();
         InputStream stream = PingxxUtils.class.getResourceAsStream("/pingxx.properties");
+        if (stream == null) {
+            throw new RuntimeException("找不到相应的配置文件！[classpath:/pingxx.properties]");
+        }
         try {
             props.load(stream);
             PINGXX_LIVE_KEY = props.getProperty("pingxx.live.key");

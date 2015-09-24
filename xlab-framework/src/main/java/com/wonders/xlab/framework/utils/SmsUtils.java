@@ -23,6 +23,9 @@ public final class SmsUtils {
     static {
         Properties props = new Properties();
         InputStream stream = SmsUtils.class.getResourceAsStream("/sms.properties");
+        if (stream == null) {
+            throw new RuntimeException("找不到相应的配置文件！[classpath:/sms.properties]");
+        }
         try {
             props.load(stream);
             BCLOUD_SMS_SRV_URI = props.getProperty("bcloud.sms.srv.url", "http://222.73.117.158/msg/");

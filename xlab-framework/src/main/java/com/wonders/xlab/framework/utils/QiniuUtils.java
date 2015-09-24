@@ -28,6 +28,9 @@ public final class QiniuUtils {
     static {
         Properties props = new Properties();
         InputStream stream = QiniuUtils.class.getResourceAsStream("/qiniu.properties");
+        if (stream == null) {
+            throw new RuntimeException("找不到相应的配置文件！[classpath:/qiniu.properties]");
+        }
         try {
             props.load(stream);
             ACCESS_KEY = props.getProperty("qiniu.access_key");
