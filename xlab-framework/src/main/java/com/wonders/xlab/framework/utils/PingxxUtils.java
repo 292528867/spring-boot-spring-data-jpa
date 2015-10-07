@@ -26,19 +26,16 @@ public final class PingxxUtils {
 
     static {
         Properties props = new Properties();
-        InputStream stream = PingxxUtils.class.getResourceAsStream("/pingxx.properties");
-        if (stream == null) {
-            throw new RuntimeException("找不到相应的配置文件！[classpath:/pingxx.properties]");
-        }
-        try {
+        try (InputStream stream = PingxxUtils.class.getResourceAsStream("/pingxx.properties")) {
+            if (stream == null) {
+                throw new RuntimeException("找不到相应的配置文件！[classpath:/pingxx.properties]");
+            }
             props.load(stream);
             PINGXX_LIVE_KEY = props.getProperty("pingxx.live.key");
             PINGXX_TEST_KEY = props.getProperty("pingxx.test.key");
 
             // 设置Ping++ API-Key 分正试环境和测试环境
             Pingpp.apiKey = PINGXX_LIVE_KEY;
-
-            stream.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new RuntimeException(e);

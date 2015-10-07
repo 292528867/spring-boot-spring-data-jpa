@@ -37,15 +37,13 @@ public final class UmengMsgPushUtils {
 
     static {
         Properties props = new Properties();
-        InputStream stream = UmengMsgPushUtils.class.getResourceAsStream("/umeng-msg-push.properties");
-        if (stream == null) {
-            throw new RuntimeException("找不到相应的配置文件！[classpath:/umeng-msg-push.properties]");
-        }
-        try {
+        try (InputStream stream = UmengMsgPushUtils.class.getResourceAsStream("/umeng-msg-push.properties")) {
+            if (stream == null) {
+                throw new RuntimeException("找不到相应的配置文件！[classpath:/umeng-msg-push.properties]");
+            }
             props.load(stream);
             APP_KEY = props.getProperty("appKey");
             APP_MASTER_SECRET = props.getProperty("app_master_secret");
-            stream.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new RuntimeException(e);

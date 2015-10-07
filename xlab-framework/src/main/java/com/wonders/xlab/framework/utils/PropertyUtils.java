@@ -18,10 +18,8 @@ public final class PropertyUtils {
     private static final Properties PROPS = new Properties();
 
     static {
-        InputStream stream = PropertyUtils.class.getResourceAsStream("/config/application.properties");
-        try {
+        try (InputStream stream = PropertyUtils.class.getResourceAsStream("/config/application.properties")) {
             PROPS.load(stream);
-            stream.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new RuntimeException(e);

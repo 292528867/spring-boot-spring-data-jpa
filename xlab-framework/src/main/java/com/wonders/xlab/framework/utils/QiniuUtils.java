@@ -27,20 +27,19 @@ public final class QiniuUtils {
 
     static {
         Properties props = new Properties();
-        InputStream stream = QiniuUtils.class.getResourceAsStream("/qiniu.properties");
-        if (stream == null) {
-            throw new RuntimeException("找不到相应的配置文件！[classpath:/qiniu.properties]");
-        }
-        try {
+        try (InputStream stream = QiniuUtils.class.getResourceAsStream("/qiniu.properties")) {
+            if (stream == null) {
+                throw new RuntimeException("找不到相应的配置文件！[classpath:/qiniu.properties]");
+            }
             props.load(stream);
             ACCESS_KEY = props.getProperty("qiniu.access_key");
             SECRET_KEY = props.getProperty("qiniu.secret_key");
             AUTH = Auth.create(ACCESS_KEY, SECRET_KEY);
-            stream.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new RuntimeException(e);
         }
+
     }
 
     private QiniuUtils() {

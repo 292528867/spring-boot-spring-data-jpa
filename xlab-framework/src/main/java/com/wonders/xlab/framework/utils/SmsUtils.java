@@ -22,16 +22,14 @@ public final class SmsUtils {
 
     static {
         Properties props = new Properties();
-        InputStream stream = SmsUtils.class.getResourceAsStream("/sms.properties");
-        if (stream == null) {
-            throw new RuntimeException("找不到相应的配置文件！[classpath:/sms.properties]");
-        }
-        try {
+        try (InputStream stream = SmsUtils.class.getResourceAsStream("/sms.properties")) {
+            if (stream == null) {
+                throw new RuntimeException("找不到相应的配置文件！[classpath:/sms.properties]");
+            }
             props.load(stream);
             BCLOUD_SMS_SRV_URI = props.getProperty("bcloud.sms.srv.url", "http://222.73.117.158/msg/");
             BCLOUD_SMS_ACCOUNT = props.getProperty("bcloud.sms.account", "wan-vip01");
             BCLOUD_SMS_PSWD = props.getProperty("bcloud.sms.pswd", "Tch123456");
-            stream.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
             throw new RuntimeException(e);
