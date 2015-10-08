@@ -53,10 +53,8 @@ public final class QiniuUtils {
         } catch (QiniuException e) {
             try {
                 LOGGER.error(e.response.bodyString());
-            } catch (QiniuException e1) {
-                // ignore
-            }
-            throw new RuntimeException(e);
+            } catch (QiniuException e1) {}
+            return false;
         }
     }
 
@@ -67,10 +65,8 @@ public final class QiniuUtils {
         } catch (QiniuException e) {
             try {
                 LOGGER.error(e.response.bodyString());
-            } catch (QiniuException e1) {
-                // ignore
-            }
-            throw new RuntimeException(e);
+            } catch (QiniuException e1) {}
+            return false;
         }
     }
 
