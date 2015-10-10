@@ -27,6 +27,7 @@
 
   <properties>
     <spring-boot.version>1.2.6.RELEASE</spring-boot.version>
+    <jackson.version>2.6.2</jackson.version>
 
     <start-class>com.wonders.xlab.framework.Application</start-class>
 
@@ -50,6 +51,13 @@
         <scope>import</scope>
       </dependency>
 
+      <!-- 创新实验室后台框架代码 -->
+      <dependency>
+        <groupId>com.wonders.xlab</groupId>
+        <artifactId>xlab-framework</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
       <dependency>
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
@@ -59,7 +67,7 @@
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-envers</artifactId>
-        <version>4.3.11.Final</version>
+        <version>5.0.2.Final</version>
       </dependency>
 
       <dependency>
@@ -68,10 +76,21 @@
         <version>2.4</version>
       </dependency>
 
+      <!-- jackson json lib -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-joda</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.datatype</groupId>
         <artifactId>jackson-datatype-hibernate4</artifactId>
-        <version>2.4.6</version>
+        <version>${jackson.version}</version>
       </dependency>
 
       <!-- 七牛云存储 -->
