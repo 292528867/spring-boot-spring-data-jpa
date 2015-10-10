@@ -34,6 +34,19 @@
       <artifactId>cors-filter</artifactId>
     </dependency>
 
+    <!-- jackson json lib -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-joda</artifactId>
@@ -64,7 +77,7 @@
       <artifactId>spring-aspects</artifactId>
     </dependency>
 
-    <!-- qiniu -->
+    <!-- 七牛云存储 -->
     <dependency>
       <groupId>com.qiniu</groupId>
       <artifactId>qiniu-java-sdk</artifactId>
@@ -110,3 +123,4 @@
   </build>
 
 </project>
+    <dependency>
