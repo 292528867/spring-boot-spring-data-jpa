@@ -1,5 +1,6 @@
 package com.wonders.xlab.framework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,6 +16,7 @@ import java.util.Date;
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties("new")
 public abstract class AbstractBaseEntity<PK extends Serializable> extends AbstractPersistable<PK> {
 
     @CreatedDate
