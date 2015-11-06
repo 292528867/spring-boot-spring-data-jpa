@@ -42,16 +42,18 @@ import java.util.Map;
 public class Application extends SpringBootServletInitializer {
 
     @Value("${jackson.indent.output}")
-    public boolean jacksonIndentOutput = false;
+    private boolean jacksonIndentOutput = false;
+
+    @Value("${cors.allowOrigin}")
+    private String corsAllowOrigin = "*";
 
     @Bean
     public FilterRegistrationBean corsFilter() {
 
         Map<String, String> initParameters = new HashMap<>();
-        initParameters.put("cors.allowOrigin", "*");
+        initParameters.put("cors.allowOrigin", corsAllowOrigin);
         initParameters.put("cors.supportedMethods", "GET, POST, HEAD, PUT, DELETE");
         initParameters.put("cors.supportedHeaders", "Accept, Origin, X-Requested-With, Content-Type, Last-Modified");
-
 
         Filter filter = new CORSFilter();
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
