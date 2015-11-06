@@ -12,7 +12,7 @@ public class ValidationUtils {
 
     public static boolean isMobiles(String mobiles) {
         if (StringUtils.isNotBlank(mobiles)) {
-            Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+            Pattern p = Pattern.compile("^((13[0-9])|(177)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
             Matcher m = p.matcher(mobiles);
             return m.matches();
         }
